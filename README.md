@@ -1,6 +1,8 @@
 # Project-Aurora
 
+
 ## Dependencies
+
 ### Live Dependencies
 - **bcryptjs**: used to hash passwords before we store them in our database
 - **body-parser**: used to parse incoming request bodies in a middleware
@@ -14,4 +16,5 @@
 - **validator**: used to validate inputs (e.g. check for valid email format, confirming passwords match)
 
 ### Dev Dependencies
+- **dotenv**: parses static data from .env file and stores the variables in *process.env*
 - **nodemon**: monitors any changes in code and automatically restarts your dev server to display changes in live time
