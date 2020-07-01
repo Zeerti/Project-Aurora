@@ -1,16 +1,25 @@
-const { Model } = require('mongoose');
+// Exports out various static keys based on if running in DEV or PROD.
 
+// if running in development load the following keys
 if (process.env.NODE_ENV !== 'production') {
     console.log("NODE SET TO NON-PROD-MODE, LOADING .ENV VARIABLES")
     require('dotenv').config();
 
     module.exports = {
-        mongoURI: `mongodb+srv://admin:${process.env.DB_PW}@aurora.q8bz0.mongodb.net/Aurora?retryWrites=true&w=majority`
+        mongoURI: `mongodb+srv://admin:${process.env.DB_PW}@aurora.q8bz0.mongodb.net/Aurora?retryWrites=true&w=majority`,
+        
+        secretOrKey: process.env.SECRET
     };
+
+// if running in production load the following keys
 } else {
     module.exports = {
-        mongoURI: `mongodb+srv://admin: --- REPLACEWITHDBPW --- @aurora.q8bz0.mongodb.net/Aurora?retryWrites=true&w=majority`
+        mongoURI: `mongodb+srv://admin: --- REPLACEWITHDBPW --- @aurora.q8bz0.mongodb.net/Aurora?retryWrites=true&w=majority`,
+        secretOrKey: "--- REPLACEWITHSECRET ---"
     }
 }
 
-// Exports out the mongoDB connection string. This will import the DB password from the .env file
+
+
+
+
