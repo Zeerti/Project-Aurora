@@ -15,7 +15,7 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
+    dateCreated: {
         type: Date,
         default: Date.now
     },
@@ -23,6 +23,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    lastLogin: {
+        type: Date,
+        default: Date.now
+    }
     
 });
 
