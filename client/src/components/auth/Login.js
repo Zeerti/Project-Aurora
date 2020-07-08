@@ -6,7 +6,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
   };
 
@@ -15,13 +15,14 @@ function Login() {
     password: password,
   };
 
-  console.log(userData);
+  console.log(errors);
 
   return (
     <div className="container">
       <div className="row" style={{ marginTop: "4rem" }}>
-        <Link to="/" className="btn-flat waves-effect">
-          <i className="material-icons left">keyboard_backspace</i> Back to home
+        <Link to="/" className="btn-flat waves-effect white-text">
+          <i className="material-icons left white-text">keyboard_backspace</i>{" "}
+          Back to home
         </Link>
         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
           <h4>
@@ -31,7 +32,7 @@ function Login() {
             Don't have an account? <Link to="/register">Register</Link>
           </p>
         </div>
-        <form noValidate onSubmit="onSubmit">
+        <form noValidate onSubmit={onSubmit}>
           <div className="input-field col s12">
             <input
               onChange={(e) => setUsername(e.target.value)}
@@ -45,7 +46,7 @@ function Login() {
           <div className="input-field col s12">
             <input
               type="password"
-              onchange={setUsername((e) => e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               value={password}
               error={errors.password}
               id="password"
@@ -71,3 +72,5 @@ function Login() {
     </div>
   );
 }
+
+export default Login;
