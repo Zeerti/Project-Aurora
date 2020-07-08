@@ -46,7 +46,7 @@ function Login() {
           <div className="input-field col s12">
             <input
               type="password"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               value={password}
               error={errors.password}
               id="password"
