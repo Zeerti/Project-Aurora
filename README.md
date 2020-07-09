@@ -18,3 +18,4 @@
 ### Dev Dependencies
 - **dotenv**: parses static data from .env file and stores the variables in *process.env*
 - **nodemon**: monitors any changes in code and automatically restarts your dev server to display changes in live time
+- **Redux DevTools Extension**: Tools to help view Redux state.
