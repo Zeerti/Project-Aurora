@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Landing() {
   return (
@@ -16,7 +15,7 @@ function Landing() {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="Capa_1"
-            enable-background="new 0 0 511.247 511.247"
+            enableBackground="new 0 0 511.247 511.247"
             viewBox="0 0 511.247 511.247"
             width="400"
             height="400"
