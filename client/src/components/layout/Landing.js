@@ -5,12 +5,6 @@ function Landing() {
   return (
     <div style={{ height: "100vh" }} className="container ">
       <div className="row">
-        <div className="video-container">
-          <div className="color-overlay">
-            <video src="aurora.mp4" type="video/mp4"></video>
-          </div>
-        </div>
-
         <div className="col s12 center-align primary-icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"

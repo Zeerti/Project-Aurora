@@ -1,13 +1,18 @@
-import React, { Component, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import classnames from "classnames";
 
-function Login() {
+function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
   const onSubmit = (e) => {
     e.preventDefault();
+    props.loginUser(userData); // Since we handled the redirect within the component, we don't need to pass in the history as a param.
   };
 
   const userData = {
@@ -15,7 +20,15 @@ function Login() {
     password: password,
   };
 
-  console.log(errors);
+  useEffect(() => {
+    if (props.auth.isAuthenticated) {
+      props.history.push("/dashboard");
+    }
+
+    if (props.errors) {
+      setErrors(props.errors);
+    }
+  }, [props]);
 
   return (
     <div className="container">
@@ -33,6 +46,7 @@ function Login() {
           </p>
         </div>
         <form noValidate onSubmit={onSubmit}>
+          {/* Username Field */}
           <div className="input-field col s12">
             <input
               onChange={(e) => setUsername(e.target.value)}
@@ -40,9 +54,14 @@ function Login() {
               error={errors.username}
               type="text"
               id="username"
+              className={classnames("", {
+                invalid: errors.username | errors.loginFailure,
+              })}
             />
             <label htmlFor="username">Username</label>
+            <span className="red-text">{errors.username}</span>
           </div>
+          {/* Password Field */}
           <div className="input-field col s12">
             <input
               type="password"
@@ -50,8 +69,12 @@ function Login() {
               value={password}
               error={errors.password}
               id="password"
+              className={classnames("", {
+                invalid: errors.password,
+              })}
             />
             <label htmlFor="password">Password</label>
+            <span className="red-text">{errors.password}</span>
           </div>
           <div className="col s12" style={{ paddingLeft: "11.250px" }}>
             <button
@@ -73,4 +96,15 @@ function Login() {
   );
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);

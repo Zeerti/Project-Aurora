@@ -6,8 +6,6 @@ const initialState = {};
 
 const middleware = [thunk];
 
-console.log(rootReducer);
-console.log(initialState);
 const store = createStore(
   rootReducer,
   initialState,
