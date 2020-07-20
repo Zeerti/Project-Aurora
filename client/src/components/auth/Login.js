@@ -22,6 +22,7 @@ function Login(props) {
 
   useEffect(() => {
     if (props.auth.isAuthenticated) {
+      setErrors({});
       props.history.push("/dashboard");
     }
 

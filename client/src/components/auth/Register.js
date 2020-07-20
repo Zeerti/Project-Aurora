@@ -16,6 +16,7 @@ function Register(props) {
   onsubmit = (e) => {
     e.preventDefault();
     props.registerUser(newUser, props.history);
+    setErrors({});
   };
 
   useEffect(() => {
