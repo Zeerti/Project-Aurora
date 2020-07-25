@@ -23,6 +23,9 @@ function Register(props) {
     if (props.errors) {
       setErrors(props.errors);
     }
+    if (props.auth.isAuthenticated) {
+      props.history.push("/dashboard");
+    }
   }, [props]);
 
   const newUser = {
