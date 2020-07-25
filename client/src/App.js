@@ -13,6 +13,7 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
+import Search from "./components/search/Search";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // Check for token to keep user logged in
@@ -46,6 +47,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/search" component={Search} />
           </Switch>
         </div>
       </Router>
