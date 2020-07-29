@@ -9,6 +9,8 @@ import {
   setSearchResults,
 } from "../../actions/searchActions";
 
+import Results from "./Results";
+
 function Search(props) {
   const [userInput, setUserInput] = useState("");
   const [searchResults, setSearchResults] = useState({});
@@ -22,53 +24,49 @@ function Search(props) {
   //   Update local state if redux searchHistory changed
   useEffect(() => {
     setSearchHistory(props.search.searchHistory);
-    // console.log(`${searchHistory} <- CUR SEARCH HISTORY`);
   }, [props.search.searchHistory]);
 
   //   Update local state if redux currentInput changed
   useEffect(() => {
     setUserInput(props.search.searchInput);
-    // console.log(`${userInput} <- CUR userInput`);
   }, [props.search.currentInput]);
 
   //   Update local state if redux searchResults changed
   useEffect(() => {
     setSearchResults(props.search.searchResults);
-    // console.log(`${JSON.stringify(searchResults)} <- CUR SearchResults`);
   }, [props.search.searchResults]);
 
   return (
     <Fragment>
       <div className="container">
-        <div className="column">
-          {/* Search Field */}
-          <form noValidate onSubmit={onSubmit}>
-            <div className="input-field col s12">
-              <input
-                className="white-text"
-                value={userInput}
-                type="text"
-                id="username"
-                placeholder="Search input goes here"
-                onChange={(e) => {
-                  props.setCurrentInput(e.target.value);
-                  setUserInput(e.target.value);
-                }}
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Add History
-            </button>
-          </form>
-          <button
-            onClick={props.clearSearchHistory}
-            className="btn btn-large blue accent-3"
-          >
-            Clear History
-          </button>
+        <div className="col">
+          <div className="row">
+            {/* Search Field */}
+            <form noValidate onSubmit={onSubmit}>
+              <div className="input-field col s12">
+                <input
+                  className="white-text"
+                  value={userInput}
+                  type="text"
+                  id="username"
+                  placeholder="Search input goes here"
+                  onChange={(e) => {
+                    props.setCurrentInput(e.target.value);
+                    setUserInput(e.target.value);
+                  }}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3 center"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+          <div className="row">
+            <Results />
+          </div>
         </div>
       </div>
     </Fragment>
