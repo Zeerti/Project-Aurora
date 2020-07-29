@@ -1,5 +1,6 @@
 .App {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .bg-nord0 {
@@ -49,12 +50,28 @@
 }
 
 .active {
-  color: var(--nord12) !important;
+  color: var(--nord13) !important;
 }
 
 .input-field input:focus {
-  border-bottom: 1px solid var(--nord12) !important;
-  box-shadow: 0 1px 0 0 var(--nord12) !important;
+  border-bottom: 1px solid var(--nord13) !important;
+  box-shadow: 0 1px 0 0 var(--nord13) !important;
+}
+
+.card .card-action {
+  padding: 16px 0;
+}
+
+.collapsible-body {
+  padding: 1rem 8px;
+}
+
+.collection-header {
+  color: var(--nord13);
+}
+
+.card-title {
+  color: var(--nord13);
 }
 
 /*

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 function LocationTable(props) {
@@ -19,10 +19,10 @@ function LocationTable(props) {
             <b>External Kitchen:</b>
           </li>
           <li class="collection-item blue-grey darken-2 white-text">
-            <b>On Prem Paging:</b>
+            <b>OnPremPaging:</b>
           </li>
           <li class="collection-item blue-grey darken-2 white-text">
-            <b>Order Confirmation Display</b>
+            <b>OCD:</b>
           </li>
           <li class="collection-item blue-grey darken-2 white-text">
             <b>SMS Provider:</b>

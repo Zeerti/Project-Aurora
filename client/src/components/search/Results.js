@@ -5,38 +5,62 @@ import LocationTable from "./LocationTable";
 let tempData = [
   {
     Server: "ADMIN3",
-    LocationID: "73219a9f-2bea-476a-b5dc-0008ed8c3c4c",
-    LocationName: "Columbus Zoo West - Food Court - Congo Rivr Chickn",
-    LocationDatabase: "POS_Columbus_Zoo_West__Food_Court__Congo_River_Chicken",
-    GroupID: "568f28ff-aeae-48da-b911-0f53f5be0ee6",
-    GroupName: "Columbus Zoo",
-    ToolsURL:
-      "https://ADMIN3.brinkpos.net/Admin/LocationTools/?id=73219a9f-2bea-476a-b5dc-0008ed8c3c4c&gid=568f28ff-aeae-48da-b911-0f53f5be0ee6",
+    LocationID: "891336147-2bea-476a-b5dc-0008ed8c3c4c",
+    LocationName: "Columbus Mumbus Twister - Food Court - Congo Rivr Chickn",
+    LocationDatabase: "Mumbus_West__Food_Court__Congo_River_Chicken",
+    GroupID: "913614755-aeae-48da-fe98-0f53f5be0ee6",
+    GroupName: "Columbus Mumbus",
+    ToolsURL: "https://website.url.gov.com",
   },
 
   {
     Server: "ADMIN3",
-    LocationID: "e3dd61ff-2379-48d2-9af1-0061bbd38753",
-    LocationName: "Brink API Toronto Kyle Lab 2 API3",
-    LocationDatabase: "POS_Brink_API_Toronto_Kyle_Lab_2_API3",
-    GroupID: "789f8403-fb94-4fc1-b68b-fd1610827938",
-    GroupName: "Brink API Toronto",
-    ToolsURL:
-      "https://ADMIN3.brinkpos.net/Admin/LocationTools/?id=e3dd61ff-2379-48d2-9af1-0061bbd38753&gid=789f8403-fb94-4fc1-b68b-fd1610827938",
+    LocationID: "891336147-2bea-476a-b5dc-0008ed8c3c4c",
+    LocationName: "Columbus Mumbus Twister - Food Court - Congo Rivr Chickn",
+    LocationDatabase: "Mumbus_West__Food_Court__Congo_River_Chicken",
+    GroupID: "913614755-aeae-48da-fe98-0f53f5be0ee6",
+    GroupName: "Columbus Mumbus",
+    ToolsURL: "https://website.url.gov.com",
+  },
+  {
+    Server: "ADMIN3",
+    LocationID: "891336147-2bea-476a-b5dc-0008ed8c3c4c",
+    LocationName: "Columbus Mumbus Twister - Food Court - Congo Rivr Chickn",
+    LocationDatabase: "Mumbus_West__Food_Court__Congo_River_Chicken",
+    GroupID: "913614755-aeae-48da-fe98-0f53f5be0ee6",
+    GroupName: "Columbus Mumbus",
+    ToolsURL: "https://website.url.gov.com",
+  },
+  {
+    Server: "ADMIN3",
+    LocationID: "891336147-2bea-476a-b5dc-0008ed8c3c4c",
+    LocationName: "Columbus Mumbus Twister - Food Court - Congo Rivr Chickn",
+    LocationDatabase: "Mumbus_West__Food_Court__Congo_River_Chicken",
+    GroupID: "913614755-aeae-48da-fe98-0f53f5be0ee6",
+    GroupName: "Columbus Mumbus",
+    ToolsURL: "https://website.url.gov.com",
   },
 ];
-// key={location.LocationID}
+
+function truncate(str, n) {
+  return str.length > n ? str.substr(0, n - 1) + "..." : str;
+}
+
+// TODO: When clicking on card expand to be 100% container width
+// TODO: Then remove the truncate function to display fully
 const locationMap = tempData.map((location) => {
   return (
-    <div className="col s12 m8 l6 xl6">
+    <div className="col s12 m12 l12 xl6">
       <div className="card blue-grey darken-1">
         <div className="card-content white-text">
-          <span className="card-title">{location.LocationName}</span>
-          <div className="divider pb"></div>
+          <span className="card-title">
+            {truncate(location.LocationName, 37)}
+          </span>
+          <div className="divider"></div>
           <p>
             <b>Location ID:</b>{" "}
             <span className="grey-text text-lighten-3">
-              {location.LocationID}
+              {truncate(location.LocationID, 40)}
             </span>
             <br />
             <b>Server:</b>{" "}
@@ -44,7 +68,7 @@ const locationMap = tempData.map((location) => {
             <br />
             <b>GroupName:</b>{" "}
             <span className="grey-text text-lighten-3">
-              {location.GroupName}
+              {truncate(location.GroupName, 40)}
             </span>
             <br />
             <b>GroupID:</b>{" "}
@@ -52,7 +76,7 @@ const locationMap = tempData.map((location) => {
             <br />
             <b>DB ID:</b>{" "}
             <span className="grey-text text-lighten-3">
-              {location.LocationDatabase}
+              {truncate(location.LocationDatabase, 49)}
             </span>
             <br />
           </p>
@@ -95,19 +119,10 @@ const locationMap = tempData.map((location) => {
 function Results(props) {
   useEffect(() => {
     // TODO: Calling this funtion to much might be expensive.
-    console.log("AutoInit");
     window.M.AutoInit();
   }, [props.search.searchResults]);
-  return (
-    // Static Test
-    <div className="test">
-      <div className="row">
-        {locationMap}
 
-        {/* Procedural Generation */}
-      </div>
-    </div>
-  );
+  return <div className="row">{locationMap}</div>;
 }
 
 const mapStateToProps = (state) => ({

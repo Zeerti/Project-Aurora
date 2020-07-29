@@ -37,39 +37,35 @@ function Search(props) {
   }, [props.search.searchResults]);
 
   return (
-    <Fragment>
-      <div className="container">
-        <div className="col">
-          <div className="row">
-            {/* Search Field */}
-            <form noValidate onSubmit={onSubmit}>
-              <div className="input-field col s12">
-                <input
-                  className="white-text"
-                  value={userInput}
-                  type="text"
-                  id="username"
-                  placeholder="Search input goes here"
-                  onChange={(e) => {
-                    props.setCurrentInput(e.target.value);
-                    setUserInput(e.target.value);
-                  }}
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3 center"
-              >
-                Search
-              </button>
-            </form>
-          </div>
-          <div className="row">
-            <Results />
-          </div>
+    <div className="container">
+      <div className="col">
+        <div className="row">
+          {/* Search Field */}
+          <form noValidate onSubmit={onSubmit}>
+            <div className="input-field col s12">
+              <input
+                className="white-text"
+                value={userInput}
+                type="text"
+                id="username"
+                placeholder="Search input goes here"
+                onChange={(e) => {
+                  props.setCurrentInput(e.target.value);
+                  setUserInput(e.target.value);
+                }}
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3 center"
+            >
+              Search
+            </button>
+          </form>
         </div>
+        <Results />
       </div>
-    </Fragment>
+    </div>
   );
 }
 
