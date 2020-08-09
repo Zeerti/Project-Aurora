@@ -4,6 +4,7 @@ import {
   GET_SEARCH_HISTORY,
   ADD_SEARCH_HISTORY,
   CLEAR_SEARCH_HISTORY,
+  LOAD_SEARCH_DATABASE,
 } from "./types";
 
 // Update the redux state with the current search term(s)
@@ -40,5 +41,13 @@ export const addSearchHistory = (userInput) => {
   return {
     type: ADD_SEARCH_HISTORY,
     payload: userInput,
+  };
+};
+
+// Load Search Database data into state
+export const loadSearchableData = (data) => {
+  return {
+    type: LOAD_SEARCH_DATABASE,
+    payload: data,
   };
 };

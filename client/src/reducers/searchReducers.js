@@ -3,6 +3,7 @@ import {
   SET_SEARCH_RESULTS,
   CLEAR_SEARCH_HISTORY,
   ADD_SEARCH_HISTORY,
+  LOAD_SEARCH_DATABASE,
 } from "../actions/types";
 
 // const isEmpty = require("../../../auth/node_modules/is-empty");
@@ -10,7 +11,8 @@ import {
 const initialState = {
   searchHistory: [],
   searchInput: "",
-  searchResults: {},
+  searchResults: [{}],
+  searchData: [{}],
 };
 
 export default function (state = initialState, action) {
@@ -37,6 +39,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         searchHistory: newHistory,
+      };
+    case LOAD_SEARCH_DATABASE:
+      return {
+        ...state,
+        searchData: action.payload,
       };
     default:
       return state;

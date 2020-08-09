@@ -1,0 +1,35 @@
+export const databaseKeys = [
+  {
+    Server: "",
+    LocationID: "",
+    LocationName: "",
+    LocationDatabase: "",
+    GroupID: "",
+    GroupName: "",
+    ToolsURL: "",
+  },
+  {
+    ServerName: "",
+    GroupName: "",
+    LocationName: "",
+    CreditProcessor: "",
+    ExternalProcessor: "",
+    GiftProcessor: "",
+    LoyaltyProvider: "",
+    PrepaidItem: "",
+    CallerId: "",
+    ExternalKitchen: "",
+    OnPremisePaging: "",
+    OrderConfirmationDisplay: "",
+    PromotionProvider: "",
+    SmsProvider: "",
+    Printers: "",
+    PaymentDevices: "",
+    Scales: "",
+    Biometrics: "",
+    CoinDispenser: "",
+    ApiAccounts: "",
+  },
+];
+
+export default databaseKeys;
