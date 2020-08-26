@@ -12,6 +12,7 @@ function truncate(str, n) {
 
 // TODO: When clicking on card expand to be 100% container width
 // TODO: Then remove the truncate function to display fully
+// TODO: Only render 50-100 results for performance
 
 function Results(props) {
   useEffect(() => {
@@ -20,9 +21,12 @@ function Results(props) {
   }, [props.search.searchResults]);
 
   if (props.results && props.results.length !== 0) {
-    const locationMap = props.results.map((location) => {
+    const locationMap = props.results.map((location, iteration) => {
+      if (iteration >= 100 && props.enableFullSearch === false) {
+        return;
+      }
       return (
-        <div className="col s12 m12 l12 xl6">
+        <div className="col s12 m12 l12 xl6" key={location.LocationID}>
           <div className="card blue-grey darken-1">
             <div className="card-content white-text">
               <span className="card-title">
@@ -72,7 +76,7 @@ function Results(props) {
                       <i className="material-icons">devices</i> Hardware
                     </div>
                     <div className="collapsible-body">
-                      <LocationTable tableType="hardware" />
+                      <LocationTable tableType="hardware" data={{}} />
                     </div>
                   </li>
                   <li>
@@ -81,7 +85,7 @@ function Results(props) {
                       Integrations
                     </div>
                     <div className="collapsible-body">
-                      <LocationTable tableType="integrations" />
+                      <LocationTable tableType="integrations" data={{}} />
                     </div>
                   </li>
                 </ul>

@@ -11,7 +11,7 @@ import {
 const initialState = {
   searchHistory: [],
   searchInput: "",
-  searchResults: [{}],
+  searchResults: false,
   searchData: [{}],
 };
 

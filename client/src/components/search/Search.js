@@ -15,6 +15,7 @@ import searchAllData from "../../utils/searchDB";
 
 let database;
 let stringDB;
+let resultComponent;
 
 // Load data in from local CSV
 // TODO: Alter this to pull dynamically from O365 Sharepoint
@@ -26,7 +27,7 @@ let stringDB;
 function Search(props) {
   const [searchableData, setSearchableData] = useState(0);
   const [userInput, setUserInput] = useState("");
-  const [searchResults, setSearchResults] = useState();
+  const [searchResults, setSearchResults] = useState(false);
   const [searchHistory, setSearchHistory] = useState([""]);
 
   if (searchableData === 0 || searchableData.length < 2) {
@@ -39,10 +40,10 @@ function Search(props) {
     e.preventDefault();
     props.addSearchHistory(e.target[0].value);
 
-    let _search = searchAllData(userInput, searchableData);
-    setSearchResults(_search);
-    console.log("SEARCH RESULTS");
-    console.log(searchResults);
+    searchAllData(userInput, searchableData).then((matched) => {
+      setSearchResults(matched);
+      window.M.AutoInit();
+    });
   };
 
   // Update local state when DB is loaded
@@ -51,7 +52,7 @@ function Search(props) {
       // props.loadSearchableData(database);
       setSearchableData(stringDB);
     }
-  }, []);
+  }, [searchableData]);
 
   //   Update local state if redux searchHistory changed
   useEffect(() => {
@@ -68,6 +69,14 @@ function Search(props) {
     setSearchResults(props.search.searchResults);
   }, [props.search.searchResults]);
 
+  if (searchResults) {
+    console.log("SEARCH RESULTS");
+    console.log(searchResults);
+
+    resultComponent = (
+      <Results results={searchResults} enableFullSearch={true} />
+    );
+  }
   return (
     <div className="container">
       <div className="col">
@@ -80,24 +89,25 @@ function Search(props) {
                 value={userInput}
                 type="text"
                 id="username"
-                placeholder="Search input goes here"
+                placeholder="What are we looking for today?"
                 onChange={(e) => {
                   props.setCurrentInput(e.target.value);
                   setUserInput(e.target.value);
                 }}
               />
             </div>
-            <button
-              type="submit"
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3 center"
-            >
-              Search
-            </button>
           </form>
+          <button
+            type="submit"
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3 center"
+          >
+            Search
+          </button>
         </div>
-        {/* Look up conditional rendering for React and don't render if search hasn't been done yet */}
-        <Results results={searchResults} />
       </div>
+
+      {/* Look up conditional rendering for React and don't render if search hasn't been done yet */}
+      {resultComponent}
     </div>
   );
 }

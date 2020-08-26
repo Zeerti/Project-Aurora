@@ -2,10 +2,9 @@
 // will return an array with error objects if there are any issues.
 // Error objects have an "Error" attribute with the message
 
-// TODO: EXPLORE ASYNC WITH SEARCH FEATURE
 import databaseKeys from "./databaseKeys";
 
-export const searchAllData = (userInput, searchableData) => {
+export const searchAllData = async (userInput, searchableData) => {
   let matched = [];
   let keys = [];
 
@@ -51,7 +50,6 @@ export const searchAllData = (userInput, searchableData) => {
     matched.push({ error: "No matches found" });
   }
 
-  console.log(matched);
   return matched;
 };
 
