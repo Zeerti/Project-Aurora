@@ -23,7 +23,7 @@ function Login(props) {
   useEffect(() => {
     if (props.auth.isAuthenticated) {
       setErrors({});
-      props.history.push("/dashboard");
+      props.history.push("/search");
     }
 
     if (props.errors) {
