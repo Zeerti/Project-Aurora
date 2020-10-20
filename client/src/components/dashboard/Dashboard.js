@@ -17,8 +17,11 @@ function Dashboard(props) {
           <h4>
             <b>Hey there,</b> {props.auth.user.name.split(" ")[0]}
             <p className="flow-text grey-text text-darken-1">
-              You are logged into the program!{" "}
+              Welcome to{" "}
               <span style={{ fontFamily: "monospace" }}>Project Aurora</span>
+              <br />
+              <br />
+              What would you like to do today?
             </p>
           </h4>
           <button
@@ -28,11 +31,25 @@ function Dashboard(props) {
               letterSpacing: "1.5px",
               marginTop: "1rem",
             }}
-            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            className="btn btn-large waves-effect waves-light hoverable bg-nord15"
             onClick={onLogoutClick}
           >
             Logout
           </button>
+          <a href="/search">
+            <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem",
+                marginLeft: "100px",
+              }}
+              className="btn btn-large waves-effect waves-light hoverable bg-nord15"
+            >
+              Search
+            </button>
+          </a>
         </div>
       </div>
     </div>

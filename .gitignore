@@ -105,3 +105,4 @@ dist
 
 client/src/searchableData/Integrations.json
 client/src/searchableData/LocationsAndGroups.json
+*.tar
