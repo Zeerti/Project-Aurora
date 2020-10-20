@@ -103,6 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-client/src/searchableData/Integrations.json
-client/src/searchableData/LocationsAndGroups.json
+# client/src/searchableData/Integrations.json
+# client/src/searchableData/LocationsAndGroups.json
 *.tar
