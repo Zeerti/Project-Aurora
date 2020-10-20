@@ -44,6 +44,15 @@ function Search(props) {
       setSearchResults(matched);
       window.M.AutoInit();
     });
+
+    console.warn(`SEARCH RESULTS SET TO: ${searchResults.length}`);
+  };
+
+  const onClick = (e) => {
+    searchAllData(userInput, searchableData).then((matched) => {
+      setSearchResults(matched);
+      window.M.AutoInit();
+    });
   };
 
   // Update local state when DB is loaded
@@ -54,10 +63,10 @@ function Search(props) {
     }
   }, [searchableData]);
 
-  //   Update local state if redux searchHistory changed
-  useEffect(() => {
-    setSearchHistory(props.search.searchHistory);
-  }, [props.search.searchHistory]);
+  // //   Update local state if redux searchHistory changed
+  // useEffect(() => {
+  //   setSearchHistory(props.search.searchHistory);
+  // }, [props.search.searchHistory]);
 
   //   Update local state if redux currentInput changed
   useEffect(() => {
@@ -65,17 +74,20 @@ function Search(props) {
   }, [props.search.currentInput, props.search.searchInput]);
 
   //   Update local state if redux searchResults changed
-  useEffect(() => {
-    setSearchResults(props.search.searchResults);
-  }, [props.search.searchResults]);
+  // useEffect(() => {
+  //   setSearchResults(props.search.searchResults);
+  //   console.log(searchResults);
+  // }, [props.search.searchResults]);
 
   if (searchResults) {
     console.log("SEARCH RESULTS");
     console.log(searchResults);
 
     resultComponent = (
-      <Results results={searchResults} enableFullSearch={true} />
+      <Results results={searchResults} enableFullSearch={false} />
     );
+
+    // setSearchResults(false);
   }
   return (
     <div className="container">
@@ -99,7 +111,8 @@ function Search(props) {
           </form>
           <button
             type="submit"
-            className="btn btn-large waves-effect waves-light hoverable bg-nord15"
+            className="btn btn-large waves-effect waves-light hoverable accent-3 bg-nord15"
+            onClick={onClick}
           >
             Search
           </button>

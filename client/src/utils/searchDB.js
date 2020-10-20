@@ -5,12 +5,13 @@
 import databaseKeys from "./databaseKeys";
 
 export const searchAllData = async (userInput, searchableData) => {
+  console.warn("starting search...");
+  let date = new Date();
+  let time = date.getTime();
   let matched = [];
   let keys = [];
 
   let _searchableData = JSON.parse(searchableData);
-
-  console.log(typeof searchableData);
 
   Object.keys(databaseKeys).forEach((keyset) => {
     keys.push(Object.keys(databaseKeys[keyset]));
@@ -34,13 +35,20 @@ export const searchAllData = async (userInput, searchableData) => {
   // TODO: Regular Expression needs to be cleaned
   let matchedData = _searchableData.filter((data) => {
     const regex = new RegExp(userInput, "gi");
+    let matched_obj = false;
     // Data is a concept object
     keys.forEach((obj) => {
+      matched_obj = false;
       obj.forEach((key) => {
-        if (data[key] && data[key].match(regex) === null) {
-          // do nothing
-        } else if (data[key] && data[key].match(regex) !== null) {
-          matched.push(data);
+        if (!matched_obj) {
+          if (data[key] && data[key].match(regex) === null) {
+            return;
+          } else if (data[key] && data[key].match(regex) !== null) {
+            console.log(key);
+            matched.push(data);
+            matched_obj = true;
+            return;
+          }
         }
       });
     });
@@ -48,8 +56,12 @@ export const searchAllData = async (userInput, searchableData) => {
 
   if (matchedData === null || matchedData === undefined) {
     matched.push({ error: "No matches found" });
+    return;
   }
 
+  let date2 = new Date();
+  let time2 = date2.getTime();
+  console.log(`Search took ${(time2 - time) / 1000} seconds to complete`);
   return matched;
 };
 
