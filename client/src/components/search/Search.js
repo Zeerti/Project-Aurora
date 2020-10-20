@@ -37,6 +37,7 @@ function Search(props) {
   }
 
   const onSubmit = (e) => {
+    setSearchResults(false);
     e.preventDefault();
     props.addSearchHistory(e.target[0].value);
 
@@ -49,6 +50,7 @@ function Search(props) {
   };
 
   const onClick = (e) => {
+    setSearchResults(false);
     searchAllData(userInput, searchableData).then((matched) => {
       setSearchResults(matched);
       window.M.AutoInit();
@@ -73,21 +75,17 @@ function Search(props) {
     setUserInput(props.search.searchInput);
   }, [props.search.currentInput, props.search.searchInput]);
 
-  //   Update local state if redux searchResults changed
-  // useEffect(() => {
-  //   setSearchResults(props.search.searchResults);
-  //   console.log(searchResults);
-  // }, [props.search.searchResults]);
+  // Update local state if redux searchResults changed
+  useEffect(() => {
+    setSearchResults(props.search.searchResults);
+  }, [props.search.searchResults]);
 
-  if (searchResults) {
-    console.log("SEARCH RESULTS");
-    console.log(searchResults);
-
+  if (searchResults.length >= 1) {
     resultComponent = (
       <Results results={searchResults} enableFullSearch={false} />
     );
-
-    // setSearchResults(false);
+  } else {
+    resultComponent = false;
   }
   return (
     <div className="container">
