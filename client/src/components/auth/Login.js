@@ -23,7 +23,7 @@ function Login(props) {
   useEffect(() => {
     if (props.auth.isAuthenticated) {
       setErrors({});
-      props.history.push("/search");
+      props.history.push("/dashboard");
     }
 
     if (props.errors) {
@@ -60,7 +60,9 @@ function Login(props) {
               })}
             />
             <label htmlFor="username">Username</label>
-            <span className="red-text">{errors.username}</span>
+            <span className="red-text">
+              {errors.usernamenotfound || errors.username}
+            </span>
           </div>
           {/* Password Field */}
           <div className="input-field col s12">
@@ -75,7 +77,9 @@ function Login(props) {
               })}
             />
             <label htmlFor="password">Password</label>
-            <span className="red-text">{errors.password}</span>
+            <span className="red-text">
+              {errors.passwordincorrect || errors.password}
+            </span>
           </div>
           <div className="col s12" style={{ paddingLeft: "11.250px" }}>
             <button

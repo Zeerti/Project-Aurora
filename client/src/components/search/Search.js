@@ -99,7 +99,7 @@ function Search(props) {
           </form>
           <button
             type="submit"
-            className="btn btn-large waves-effect waves-light hoverable blue accent-3 center"
+            className="btn btn-large waves-effect waves-light hoverable bg-nord15"
           >
             Search
           </button>
