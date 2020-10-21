@@ -35,45 +35,45 @@ router.options("/", function (req, res, next) {
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-router.post("/register", (req, res) => {
-  // form validation
+// router.post("/register", (req, res) => {
+//   // form validation
 
-  const { errors, isValid } = validateRegisterInput(req.body);
+//   const { errors, isValid } = validateRegisterInput(req.body);
 
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+//   // Check validation
+//   if (!isValid) {
+//     return res.status(400).json(errors);
+//   }
 
-  // create user
-  User.findOne({ username: req.body.username }).then((user) => {
-    // Check if the username already exists
-    if (user) {
-      return res
-        .status(400)
-        .json({ username: "That username already exists! What a bummer" });
-    } else {
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        username: req.body.username,
-      });
+//   // create user
+//   User.findOne({ username: req.body.username }).then((user) => {
+//     // Check if the username already exists
+//     if (user) {
+//       return res
+//         .status(400)
+//         .json({ username: "That username already exists! What a bummer" });
+//     } else {
+//       const newUser = new User({
+//         name: req.body.name,
+//         email: req.body.email,
+//         password: req.body.password,
+//         username: req.body.username,
+//       });
 
-      // Hash password before saving to the database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then((user) => res.json(user))
-            .catch((err) => console.log(err));
-        });
-      });
-    }
-  });
-});
+//       // Hash password before saving to the database
+//       bcrypt.genSalt(10, (err, salt) => {
+//         bcrypt.hash(newUser.password, salt, (err, hash) => {
+//           if (err) throw err;
+//           newUser.password = hash;
+//           newUser
+//             .save()
+//             .then((user) => res.json(user))
+//             .catch((err) => console.log(err));
+//         });
+//       });
+//     }
+//   });
+// });
 
 // @route POST api/users/login
 // @desc Login user and return JWT token

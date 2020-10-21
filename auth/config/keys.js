@@ -14,8 +14,8 @@ if (process.env.NODE_ENV !== 'production') {
 // if running in production load the following keys
 } else {
     module.exports = {
-        mongoURI: `mongodb+srv://admin: --- REPLACEWITHDBPW --- @aurora.q8bz0.mongodb.net/Aurora?retryWrites=true&w=majority`,
-        secretOrKey: "--- REPLACEWITHSECRET ---"
+        mongoURI: `mongodb+srv://admin:PmpzasJieOWVWVzL@aurora.q8bz0.mongodb.net/Aurora?retryWrites=true&w=majority`,
+        secretOrKey: "dac9630aec642a428cd73f4be0a03569"
     }
 }
 
