@@ -103,9 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
-# JSON data
-client/src/searchableData/Integrations.json
-client/src/searchableData/LocationsAndGroups.json
+# JSON Data
+auth/client/src/searchableData/Integrations.json
+auth/client/src/searchableData/LocationsAndGroups.json
 
+# React Build TAR
 *.tar
-
