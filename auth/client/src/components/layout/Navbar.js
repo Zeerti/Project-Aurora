@@ -11,7 +11,7 @@ function Navbar() {
             style={{
               fontFamily: "monospace",
             }}
-            className="col s5 brand-logo center"
+            className="col s12 brand-logo center"
           >
             <i className="material-icons">flare</i>
             Project Aurora

@@ -6,8 +6,12 @@ input {
 }
 
 input:focus {
-  border-bottom: 1px solid var(--nord15) !important;
-  box-shadow: 0 1px 0 0 var(--nord15) !important;
+  border-bottom: 1px solid var(--nord13) !important;
+  box-shadow: 0 1px 0 0 var(--nord13) !important;
+}
+
+#advancedbutton {
+  width: 100% !important;
 }
 
 .App {

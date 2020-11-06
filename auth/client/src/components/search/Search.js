@@ -34,6 +34,7 @@ function Search(props) {
   const [formInputDBID, setFormInputDBID] = useState("");
   const [searchResults, setSearchResults] = useState(false);
   const [searchHistory, setSearchHistory] = useState([""]);
+  
 
   if (searchableData === 0 || searchableData.length < 2) {
     database = require("../../searchableData/LocationsAndGroups.json");
@@ -48,16 +49,16 @@ function Search(props) {
 
     searchAllData(formInputLocName, searchableData).then((matched) => {
       setSearchResults(matched);
+      window.M.toast({html: `Displaying ${matched.length - 100 > 0 ? 100 : matched.length } of ${matched.length} matches`});
       window.M.AutoInit();
     });
-
-    console.warn(`SEARCH RESULTS SET TO: ${searchResults.length}`);
   };
 
   const onClick = (e) => {
     setSearchResults(false);
     searchAllData(formInputLocName, searchableData).then((matched) => {
       setSearchResults(matched);
+      window.M.toast({html: `Displaying ${matched.length - 100 > 0 ? 100 : matched.length } of ${matched.length} matches`});
       window.M.AutoInit();
     });
   };
@@ -76,12 +77,18 @@ function Search(props) {
   // }, [props.search.searchHistory]);
 
   //   Update local state if redux currentInput changed
+  //    Ensure materialize JS is initialized for objects
   useEffect(() => {
     setFormInputLocName(props.search.searchInput);
     document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('select');
-      var instances = window.M.FormSelect.init(elems);
-      console.log(instances);
+      // Instanciate forms
+      let formElems = document.querySelectorAll('select');
+      let formInstances = window.M.FormSelect.init(formElems);
+
+      // Instanciate modals
+      let modalElems = document.querySelectorAll('.modal');
+      var modalInstances = window.M.Modal.init(modalElems);
+      
     })
 
     
@@ -107,7 +114,7 @@ function Search(props) {
 
     <div className="container">
       <form noValidate onSubmit={onSubmit}>
-        <div className="card blue-grey darken-1">
+        <div className="card blue-grey darken-2">
           <div className="card-content">
             <span className="card-title">Enter Search Details Below</span>
             <div className="divider"></div>
@@ -152,34 +159,24 @@ function Search(props) {
                   <option value="1">Admin 1</option>
                   <option value="2">Admin 2</option>
                   <option value="3">Admin 3</option>
-                  <option value="1">Admin 4</option>
-                  <option value="2">Admin 5</option>
-                  <option value="3">Admin 6</option>
-                  <option value="1">Admin 7</option>
-                  <option value="2">Admin 8</option>
-                  <option value="3">Admin 9</option>
-                  <option value="1">Admin 10</option>
-                  <option value="2">Admin 11</option>
-                  <option value="3">Admin 12</option>
-                  <option value="1">Admin 13</option>
-                  <option value="2">Admin 14</option>
-                  <option value="3">Admin 15</option>
-                  <option value="1">Admin 16</option>
-                  <option value="2">Admin 17</option>
-                  <option value="3">Admin 18</option>
-                  <option value="1">Admin 19</option>
-                  <option value="2">Admin 20</option>
+                  <option value="4">Admin 4</option>
+                  <option value="5">Admin 5</option>
+                  <option value="6">Admin 6</option>
+                  <option value="7">Admin 7</option>
+                  <option value="8">Admin 8</option>
+                  <option value="9">Admin 9</option>
+                  <option value="10">Admin 10</option>
+                  <option value="11">Admin 11</option>
+                  <option value="12">Admin 12</option>
+                  <option value="13">Admin 13</option>
+                  <option value="14">Admin 14</option>
+                  <option value="15">Admin 15</option>
+                  <option value="16">Admin 16</option>
+                  <option value="17">Admin 17</option>
+                  <option value="18">Admin 18</option>
+                  <option value="19">Admin 19</option>
+                  <option value="20">Admin 20</option>
                 </select>
-                {/* <input
-                  className=""
-                  value={formInputServer}
-                  type="text"
-                  id="formServer"
-                  placeholder="Admin Portal Server"
-                  onChange={(e) => {
-                    setFormInputServer(e.target.value);
-                  }}
-                /> */}
                 <input
                   className=""
                   value={formInputGroupName}
@@ -203,11 +200,66 @@ function Search(props) {
               </div>
             </div>
           </div>
+          <div className="row">
+            <div className="s12 l12 center-align">
+              <a
+                id="advancedbutton"
+                href="#advancedoptions" // Modal ID
+                className="btn btn-large waves-effect waves-light hoverable accent-3 bg-nord15 center-align modal-trigger"
+              >
+                Advanced Search Options
+              </a>
+              {/* Modal Object */}
+              <div className="modal blue-grey darken-2 bottom-sheet" id="advancedoptions">
+                <div className="row">
+                  <div className="modal-content input-field col s12 l6 xl6">
+                    <div className="row">
+                      <div className="col input-field">
+                        <h5>Advanced Options</h5>
+                      </div>
+                    </div>
+                    <input
+                        className=""
+                        value={formInputLocName}
+                        type="text"
+                        id="formLocName"
+                        placeholder="Location Name"
+                        onChange={(e) => {
+                          props.setCurrentInput(e.target.value);
+                          setFormInputLocName(e.target.value);
+                        }}
+                      />
+                      <input
+                        className=""
+                        value={formInputLID}
+                        type="text"
+                        id="formLID"
+                        placeholder="Location ID"
+                        onChange={(e) => {
+                          setFormInputLID(e.target.value);
+                        }}
+                      />
+                      <input
+                        className=""
+                        value={formInputDBID}
+                        type="text"
+                        id="formDBID"
+                        placeholder="Database ID"
+                        onChange={(e) => {
+                          setFormInputDBID(e.target.value);
+                        }}
+                      />
+                  </div>
+                </div>
+              </div>
+              {/* End Modal Object */}
+            </div>
+          </div>
         </div>
       </form>
       <button
         type="submit"
-        className="btn btn-large waves-effect waves-light hoverable accent-3 bg-nord15 center"
+        className="btn btn-large waves-effect waves-light hoverable accent-3 bg-nord15 center-align"
         onClick={onClick}
       >
         Search
